@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Github</string>
+    <string name="search">Cari</string>
+    <string name="nothing_to_see_here">Tidak ada apa-apa disini</string>
+    <string name="followers">Pengikut</string>
+    <string name="following">Mengikuti</string>
+</resources>
