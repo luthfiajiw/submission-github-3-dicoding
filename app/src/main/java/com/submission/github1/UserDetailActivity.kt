@@ -9,11 +9,14 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.submission.github1.databinding.ActivityUserDetailBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class UserDetailActivity : AppCompatActivity() {
     companion object {
@@ -33,8 +36,8 @@ class UserDetailActivity : AppCompatActivity() {
         binding = ActivityUserDetailBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
-        setTab()
         val user : UserModel = intent.getParcelableExtra<UserModel>(EXTRA_USER) as UserModel
+        setTab(user.login!!)
         supportActionBar?.apply {
             title = user.login
             setDisplayHomeAsUpEnabled(true)
@@ -42,7 +45,9 @@ class UserDetailActivity : AppCompatActivity() {
             elevation = 4F
         }
 
-        userViewModel.getDetailUser(user.login!!)
+        lifecycleScope.launch(Dispatchers.IO) {
+            userViewModel.getDetailUser(user.login!!)
+        }
         userViewModel.isLoading.observe(this, { isLoading ->
             showLoading(isLoading)
         })
@@ -76,8 +81,8 @@ class UserDetailActivity : AppCompatActivity() {
         binding = null
     }
 
-    private fun setTab() {
-        val profilePagerAdapter = ProfilePagerAdapter(this)
+    private fun setTab(username: String) {
+        val profilePagerAdapter = ProfilePagerAdapter(this, username)
         val viewPager: ViewPager2 = binding?.viewPager!!
         viewPager.adapter = profilePagerAdapter
 

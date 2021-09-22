@@ -7,17 +7,12 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.submission.github1.databinding.ActivityListBinding
 import kotlinx.coroutines.Dispatchers
@@ -73,7 +68,7 @@ class ListActivity : AppCompatActivity() {
 
                 searchView.clearFocus()
                 lifecycleScope.launch(Dispatchers.IO) {
-                    userViewModel.getListUser(TypeListUser.SEARCH, query!!)
+                    userViewModel.getListUser(query!!)
                 }
                 return true
             }
@@ -109,6 +104,11 @@ class ListActivity : AppCompatActivity() {
                 rvUsers.visibility = View.VISIBLE
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 
     private fun showEmptyState(users: UsersModel) {
