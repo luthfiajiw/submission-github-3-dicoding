@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.submission.github1.databinding.FragmentFollowersBinding
-import com.submission.github1.databinding.FragmentFollowingBinding
 
 class FollowersFragment() : Fragment() {
     private var binding: FragmentFollowersBinding? = null

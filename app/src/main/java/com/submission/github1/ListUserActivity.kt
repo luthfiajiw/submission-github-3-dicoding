@@ -7,17 +7,13 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.submission.github1.databinding.ActivityListBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class ListUserActivity : AppCompatActivity() {
     private var binding : ActivityListBinding? = null

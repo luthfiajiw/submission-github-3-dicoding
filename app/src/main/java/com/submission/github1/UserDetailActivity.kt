@@ -1,25 +1,18 @@
 package com.submission.github1
 
-import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.submission.github1.databinding.ActivityUserDetailBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class UserDetailActivity : AppCompatActivity() {
     companion object {

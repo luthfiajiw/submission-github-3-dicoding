@@ -1,6 +1,5 @@
 package com.submission.github1
 
-import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
