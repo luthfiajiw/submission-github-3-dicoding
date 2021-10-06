@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.activity.viewModels
@@ -18,7 +19,7 @@ import com.submission.github1.databinding.ActivityListBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ListActivity : AppCompatActivity() {
+class ListUserActivity : AppCompatActivity() {
     private var binding : ActivityListBinding? = null
     private val userViewModel by viewModels<UserViewModel>()
     private lateinit var listUserAdapter: ListUserAdapter
@@ -32,7 +33,7 @@ class ListActivity : AppCompatActivity() {
         binding?.apply {
             rvUsers.setHasFixedSize(true)
             rvUsers.adapter = listUserAdapter
-            rvUsers.layoutManager = LinearLayoutManager(this@ListActivity)
+            rvUsers.layoutManager = LinearLayoutManager(this@ListUserActivity)
         }
 
         supportActionBar?.apply {
@@ -67,9 +68,7 @@ class ListActivity : AppCompatActivity() {
                 if (query?.isEmpty() == true) return false
 
                 searchView.clearFocus()
-                lifecycleScope.launch(Dispatchers.IO) {
-                    userViewModel.getListUser(query!!)
-                }
+                userViewModel.getListUser(query!!)
                 return true
             }
 
@@ -86,7 +85,7 @@ class ListActivity : AppCompatActivity() {
         listUserAdapter.notifyDataSetChanged()
         listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
             override fun onItemClicked(data: UserModel) {
-                val intent : Intent = Intent(this@ListActivity, UserDetailActivity::class.java)
+                val intent : Intent = Intent(this@ListUserActivity, UserDetailActivity::class.java)
                 intent.putExtra(UserDetailActivity.EXTRA_USER, data)
                 startActivity(intent)
             }

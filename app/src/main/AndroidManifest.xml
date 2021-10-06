@@ -15,7 +15,7 @@
             android:name=".UserDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".ListActivity"
+            android:name=".ListUserActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

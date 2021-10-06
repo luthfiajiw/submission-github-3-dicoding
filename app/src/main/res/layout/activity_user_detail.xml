@@ -20,186 +20,195 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:padding="16dp"
-        android:visibility="gone"
-        android:id="@+id/profile_section"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/detail_avatar"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            tools:src="@drawable/user1" />
-
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/detail_avatar"
-            android:orientation="horizontal">
-
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <RelativeLayout
-                android:id="@+id/repository_column"
-                android:layout_width="wrap_content"
+                android:padding="16dp"
+                android:visibility="gone"
+                android:id="@+id/profile_section"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/repository"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:textAlignment="center"
-                    android:textColor="#8b949e"
-                    android:text="0" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/detail_avatar"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    tools:src="@drawable/user1" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/repository"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/repository"
-                    android:textAlignment="center"
-                    android:textColor="#8b949e" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/detail_avatar"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/repository_column"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/repository"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:textAlignment="center"
+                            android:textColor="#8b949e"
+                            android:text="0" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/repository"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/repository"
+                            android:textAlignment="center"
+                            android:textColor="#8b949e" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <RelativeLayout
+                        android:id="@+id/following_column"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/following"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:textAlignment="center"
+                            android:textColor="#8b949e"
+                            android:text="0" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/following"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/following"
+                            android:textAlignment="center"
+                            android:textColor="#8b949e" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <RelativeLayout
+                        android:id="@+id/followers_column"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/followers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:textAlignment="center"
+                            android:textColor="#8b949e"
+                            android:text="0" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/followers"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/followers"
+                            android:textAlignment="center"
+                            android:textColor="#8b949e" />
+                    </RelativeLayout>
+                </LinearLayout>
             </RelativeLayout>
 
-            <View
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_desc"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <RelativeLayout
-                android:id="@+id/following_column"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
+                android:paddingHorizontal="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/profile_section"
+                app:layout_constraintStart_toStartOf="@+id/profile_section">
                 <TextView
-                    android:id="@+id/following"
+                    android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:textAlignment="center"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="Nama"
+                    android:textColor="#c9d1d9"/>
+
+                <TextView
+                    android:id="@+id/company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:textColor="#8b949e"
-                    android:text="0" />
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/ic_outline_apartment_24_grey"
+                    android:drawablePadding="12dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/name"
+                    app:layout_constraintStart_toStartOf="@+id/name"
+                    tools:text="Company" />
 
                 <TextView
+                    android:id="@+id/location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/following"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/following"
-                    android:textAlignment="center"
-                    android:textColor="#8b949e" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <RelativeLayout
-                android:id="@+id/followers_column"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/followers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:textAlignment="center"
                     android:textColor="#8b949e"
-                    android:text="0" />
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/ic_outline_location_on_24_grey"
+                    android:drawablePadding="12dp"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintTop_toBottomOf="@+id/company"
+                    app:layout_constraintStart_toStartOf="@+id/company"
+                    tools:text="Location" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/tab_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black_primary"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_desc">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/followers"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/followers"
-                    android:textAlignment="center"
-                    android:textColor="#8b949e" />
-            </RelativeLayout>
+                    android:background="?attr/colorPrimary"
+                    app:tabTextColor="@color/white" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="255dp"/>
+            </LinearLayout>
         </LinearLayout>
-    </RelativeLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/profile_desc"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/profile_section"
-        app:layout_constraintStart_toStartOf="@+id/profile_section">
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="Nama"
-            android:textColor="#c9d1d9"/>
-
-        <TextView
-            android:id="@+id/company"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#8b949e"
-            android:textSize="12sp"
-            app:drawableStartCompat="@drawable/ic_outline_apartment_24_grey"
-            android:drawablePadding="12dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/name"
-            app:layout_constraintStart_toStartOf="@+id/name"
-            tools:text="Company" />
-
-        <TextView
-            android:id="@+id/location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#8b949e"
-            android:textSize="12sp"
-            app:drawableStartCompat="@drawable/ic_outline_location_on_24_grey"
-            android:drawablePadding="12dp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintTop_toBottomOf="@+id/company"
-            app:layout_constraintStart_toStartOf="@+id/company"
-            tools:text="Location" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:id="@+id/tab_section"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/black_primary"
-        android:orientation="vertical"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_desc">
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:tabTextColor="@color/white" />
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

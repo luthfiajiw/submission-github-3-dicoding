@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/black_primary"
     android:padding="8dp"
-    tools:context=".ListActivity">
+    tools:context=".ListUserActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:visibility="gone"

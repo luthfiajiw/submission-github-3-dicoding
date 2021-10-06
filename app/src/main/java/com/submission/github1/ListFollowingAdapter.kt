@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.submission.github1.databinding.ItemRowUserBinding
 
-class ListUserAdapter() : RecyclerView.Adapter<ListUserAdapter.ListViewHolder>() {
+class ListFollowingAdapter() : RecyclerView.Adapter<ListFollowingAdapter.ListViewHolder>() {
     private var mData = UsersModel()
     private lateinit var onItemClickCallback: OnItemClickCallback
 
-    fun setData(users: UsersModel) {
+    fun setList(list: List<UserModel>) {
         mData = UsersModel()
-        mData = users
+        mData.items = list
         notifyDataSetChanged()
     }
 
@@ -46,12 +46,12 @@ class ListUserAdapter() : RecyclerView.Adapter<ListUserAdapter.ListViewHolder>()
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ListUserAdapter.ListViewHolder {
-        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.item_row_user, parent, false)
+    ): ListFollowingAdapter.ListViewHolder {
+        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.item_row_following, parent, false)
         return ListViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ListUserAdapter.ListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ListFollowingAdapter.ListViewHolder, position: Int) {
         val user = mData.items[position]
 
         holder.bind(user)

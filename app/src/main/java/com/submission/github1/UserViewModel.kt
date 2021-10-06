@@ -14,8 +14,8 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import cz.msebera.android.httpclient.Header
 
 class UserViewModel : ViewModel() {
-    private val client = AsyncHttpClient()
-    private val token = "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"
+
+    private val token = "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"
     private val baseUrl = "https://api.github.com"
 
     private val usersModel = MutableLiveData<UsersModel>()
@@ -47,12 +47,13 @@ class UserViewModel : ViewModel() {
         .build()
 
     fun getDetailUser(username: String) {
+        val client = AsyncHttpClient()
         val url = "$baseUrl/users/$username"
 
         _isLoading.postValue(true)
         client.addHeader("Authorization", "token $token")
         client.addHeader("User-Agent", "request")
-        client.get(url, object : AsyncHttpResponseHandler(Looper.getMainLooper()) {
+        client.get(url, object : AsyncHttpResponseHandler() {
             override fun onSuccess(
                 statusCode: Int,
                 headers: Array<out Header>?,
@@ -64,7 +65,7 @@ class UserViewModel : ViewModel() {
                     val jsonAdapter = moshi.adapter(UserModel::class.java)
                     val response = jsonAdapter.fromJson(result)
 
-                    userModel.postValue(response)
+                    userModel.postValue(response!!)
                 } catch (e: Exception) {
                     _snackbarText.postValue(Event(e.message.toString()))
                 } finally {
@@ -86,18 +87,13 @@ class UserViewModel : ViewModel() {
     }
 
     fun getListUser(username: String) {
+        val client = AsyncHttpClient()
         var url = "$baseUrl/search/users?q=$username"
-
-//        url += when (type) {
-//            TypeListUser.SEARCH -> "/search/users?q=$username"
-//            TypeListUser.FOLLOWING -> "/users/$username/following"
-//            TypeListUser.FOLLOWERS -> "/users/$username/followers"
-//        }
 
         _isLoading.postValue(true)
         client.addHeader("Authorization", "token $token")
         client.addHeader("User-Agent", "request")
-        client.get(url, object : AsyncHttpResponseHandler(Looper.getMainLooper()) {
+        client.get(url, object : AsyncHttpResponseHandler() {
             override fun onSuccess(
                 statusCode: Int,
                 headers: Array<out Header>?,
@@ -109,7 +105,8 @@ class UserViewModel : ViewModel() {
                     val jsonAdapter = moshi.adapter(UsersModel::class.java)
                     val response = jsonAdapter.fromJson(result)
 
-                    usersModel.postValue(response)
+                    Log.d("getListUser", "onSuccess: $result")
+                    usersModel.postValue(response!!)
                 } catch (e: Exception) {
                     _snackbarText.postValue(Event(e.message.toString()))
                 } finally {
@@ -131,12 +128,14 @@ class UserViewModel : ViewModel() {
     }
 
     fun getListFollowing(username: String) {
+        Log.d("getListFollowing", "onSuccess: $username")
+        val client = AsyncHttpClient()
         val url = "$baseUrl/users/$username/following"
 
         _isLoadingFollowing.postValue(true)
         client.addHeader("Authorization", "token $token")
         client.addHeader("User-Agent", "request")
-        client.get(url, object: AsyncHttpResponseHandler(Looper.getMainLooper()) {
+        client.get(url, object: AsyncHttpResponseHandler() {
             override fun onSuccess(
                 statusCode: Int,
                 headers: Array<out Header>?,
@@ -149,8 +148,7 @@ class UserViewModel : ViewModel() {
                     val adapter: JsonAdapter<List<UserModel>> = moshi.adapter(listType)
                     val result = adapter.fromJson(response)
 
-                    Log.d("SUCCEED", "onSuccess: $result")
-                    _listFollowing.postValue(result)
+                    _listFollowing.postValue(result!!)
                 } catch (e: Exception) {
                     _snackbarText.postValue(Event(e.message.toString()))
                 } finally {
@@ -165,6 +163,47 @@ class UserViewModel : ViewModel() {
                 error: Throwable?
             ) {
                 _isLoadingFollowing.postValue(false)
+                _snackbarText.postValue(Event(error?.message.toString()))
+            }
+
+        })
+    }
+
+    fun getListFollowers(username: String) {
+        val client = AsyncHttpClient()
+        val url = "$baseUrl/users/$username/followers"
+
+        _isLoadingFollowers.postValue(true)
+        client.addHeader("Authorization", "token $token")
+        client.addHeader("User-Agent", "request")
+        client.get(url, object: AsyncHttpResponseHandler() {
+            override fun onSuccess(
+                statusCode: Int,
+                headers: Array<out Header>?,
+                responseBody: ByteArray?
+            ) {
+                try {
+                    val response = String(responseBody!!)
+
+                    val listType = Types.newParameterizedType(List::class.java, UserModel::class.java)
+                    val adapter: JsonAdapter<List<UserModel>> = moshi.adapter(listType)
+                    val result = adapter.fromJson(response)
+
+                    _listFollowers.postValue(result!!)
+                } catch (e: Exception) {
+                    _snackbarText.postValue(Event(e.message.toString()))
+                } finally {
+                    _isLoadingFollowers.postValue(false)
+                }
+            }
+
+            override fun onFailure(
+                statusCode: Int,
+                headers: Array<out Header>?,
+                responseBody: ByteArray?,
+                error: Throwable?
+            ) {
+                _isLoadingFollowers.postValue(false)
                 _snackbarText.postValue(Event(error?.message.toString()))
             }
 

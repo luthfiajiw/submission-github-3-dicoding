@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         Timer().schedule(3000) {
-            val listViewIntent = Intent(this@MainActivity, ListActivity::class.java)
+            val listViewIntent = Intent(this@MainActivity, ListUserActivity::class.java)
             startActivity(listViewIntent)
             finish()
         }

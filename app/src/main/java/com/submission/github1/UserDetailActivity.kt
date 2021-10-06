@@ -1,9 +1,12 @@
 package com.submission.github1
 
+import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
@@ -21,6 +24,7 @@ import kotlinx.coroutines.launch
 class UserDetailActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_USER = "extra_user"
+        const val USERNAME_STATE = "username_state"
         @StringRes
         private val TAB_TITLES = intArrayOf(
             R.string.following,
@@ -30,13 +34,14 @@ class UserDetailActivity : AppCompatActivity() {
 
     private var binding : ActivityUserDetailBinding? = null
     private val userViewModel: UserViewModel by viewModels()
+    lateinit var user : UserModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserDetailBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
-        val user : UserModel = intent.getParcelableExtra<UserModel>(EXTRA_USER) as UserModel
+        user = intent.getParcelableExtra<UserModel>(EXTRA_USER) as UserModel
         setTab(user.login!!)
         supportActionBar?.apply {
             title = user.login
@@ -45,9 +50,7 @@ class UserDetailActivity : AppCompatActivity() {
             elevation = 4F
         }
 
-        lifecycleScope.launch(Dispatchers.IO) {
-            userViewModel.getDetailUser(user.login!!)
-        }
+        userViewModel.getDetailUser(user.login!!)
         userViewModel.isLoading.observe(this, { isLoading ->
             showLoading(isLoading)
         })
