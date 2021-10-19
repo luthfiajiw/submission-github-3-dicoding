@@ -1,7 +1,7 @@
 package com.submission.github1
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 data class UsersModel(
     var total_count: Int = 0,

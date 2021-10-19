@@ -8,32 +8,26 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.submission.github1.databinding.ActivityUserDetailBinding
+import com.submission.github1.helper.ViewModelFactory
 
 class UserDetailActivity : AppCompatActivity() {
-    companion object {
-        const val EXTRA_USER = "extra_user"
-        const val USERNAME_STATE = "username_state"
-        @StringRes
-        private val TAB_TITLES = intArrayOf(
-            R.string.following,
-            R.string.followers
-        )
-    }
 
     private var binding : ActivityUserDetailBinding? = null
-    private val userViewModel: UserViewModel by viewModels()
-    lateinit var user : UserModel
+    private lateinit var userViewModel: UserViewModel
+    private lateinit var user : UserModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserDetailBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
+        userViewModel = obtainViewModel(this@UserDetailActivity)
         user = intent.getParcelableExtra<UserModel>(EXTRA_USER) as UserModel
         setTab(user.login!!)
         supportActionBar?.apply {
@@ -104,5 +98,20 @@ class UserDetailActivity : AppCompatActivity() {
                 tabSection.visibility = View.VISIBLE
             }
         }
+    }
+
+    private fun obtainViewModel(activity: AppCompatActivity): UserViewModel {
+        val factory = ViewModelFactory.getInstance(activity.application)
+        return ViewModelProvider(activity, factory).get(UserViewModel::class.java)
+    }
+
+    companion object {
+        const val EXTRA_USER = "extra_user"
+
+        @StringRes
+        private val TAB_TITLES = intArrayOf(
+            R.string.following,
+            R.string.followers
+        )
     }
 }

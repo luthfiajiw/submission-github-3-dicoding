@@ -35,10 +35,6 @@ class ListFollowingAdapter() : RecyclerView.Adapter<ListFollowingAdapter.ListVie
         }
     }
 
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback
-    }
-
     interface OnItemClickCallback {
         fun onItemClicked(data: UserModel)
     }
@@ -57,7 +53,5 @@ class ListFollowingAdapter() : RecyclerView.Adapter<ListFollowingAdapter.ListVie
         holder.bind(user)
     }
 
-    override fun getItemCount(): Int {
-        return mData.items.size
-    }
+    override fun getItemCount(): Int = mData.items.size
 }

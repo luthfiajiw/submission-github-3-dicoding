@@ -11,13 +11,15 @@ import android.view.Menu
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.submission.github1.databinding.ActivityListBinding
+import com.submission.github1.helper.ViewModelFactory
 
 class ListUserActivity : AppCompatActivity() {
     private var binding : ActivityListBinding? = null
-    private val userViewModel by viewModels<UserViewModel>()
+    private lateinit var userViewModel: UserViewModel
     private lateinit var listUserAdapter: ListUserAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +27,7 @@ class ListUserActivity : AppCompatActivity() {
         binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
+        userViewModel = obtainViewModel(this@ListUserActivity)
         initListAdapter()
         binding?.apply {
             rvUsers.setHasFixedSize(true)
@@ -78,7 +81,6 @@ class ListUserActivity : AppCompatActivity() {
 
     private fun initListAdapter() {
         listUserAdapter = ListUserAdapter()
-        listUserAdapter.notifyDataSetChanged()
         listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
             override fun onItemClicked(data: UserModel) {
                 val intent : Intent = Intent(this@ListUserActivity, UserDetailActivity::class.java)
@@ -101,13 +103,18 @@ class ListUserActivity : AppCompatActivity() {
         }
     }
 
+    private fun obtainViewModel(activity: AppCompatActivity): UserViewModel {
+        val factory = ViewModelFactory.getInstance(activity.application)
+        return ViewModelProvider(activity, factory).get(UserViewModel::class.java)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         binding = null
     }
 
     private fun showEmptyState(users: UsersModel) {
-        if (users != null && users.total_count > 0) {
+        if (users.total_count > 0) {
             binding?.emptyState?.visibility = View.GONE
         } else {
             binding?.emptyState?.visibility = View.VISIBLE

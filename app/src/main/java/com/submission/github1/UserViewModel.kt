@@ -1,5 +1,6 @@
 package com.submission.github1
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,9 +13,9 @@ import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import cz.msebera.android.httpclient.Header
 
-class UserViewModel : ViewModel() {
+class UserViewModel(application: Application) : ViewModel() {
 
-    private val token = "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"
+    private val token = "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"
     private val baseUrl = "https://api.github.com"
 
     private val usersModel = MutableLiveData<UsersModel>()

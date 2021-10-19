@@ -5,13 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.submission.github1.databinding.FragmentFollowersBinding
+import com.submission.github1.helper.ViewModelFactory
 
-class FollowersFragment() : Fragment() {
+class FollowersFragment : Fragment() {
     private var binding: FragmentFollowersBinding? = null
-    private val userViewModel by viewModels<UserViewModel>()
+    private lateinit var userViewModel: UserViewModel
     private lateinit var listFollowingAdapter: ListFollowingAdapter
 
     override fun onCreateView(
@@ -32,6 +35,8 @@ class FollowersFragment() : Fragment() {
             rvFollowers.layoutManager = LinearLayoutManager(view.context)
         }
 
+        userViewModel = obtainViewModel(requireActivity())
+
         if (arguments != null) {
             val username = arguments?.getString(ProfilePagerAdapter.EXTRA_USERNAME)
             userViewModel.getListFollowers(username!!)
@@ -46,7 +51,6 @@ class FollowersFragment() : Fragment() {
 
     private fun initListAdapter() {
         listFollowingAdapter = ListFollowingAdapter()
-        listFollowingAdapter.notifyDataSetChanged()
     }
 
     private fun showLoading(state: Boolean) {
@@ -61,6 +65,11 @@ class FollowersFragment() : Fragment() {
                 progressBar.visibility = View.GONE
             }
         }
+    }
+
+    private fun obtainViewModel(activity: FragmentActivity): UserViewModel {
+        val factory = ViewModelFactory.getInstance(activity.application)
+        return ViewModelProvider(activity, factory).get(UserViewModel::class.java)
     }
 
     override fun onDestroy() {
