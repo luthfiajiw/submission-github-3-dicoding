@@ -35,11 +35,6 @@ class ListUserActivity : AppCompatActivity() {
             rvUsers.layoutManager = LinearLayoutManager(this@ListUserActivity)
         }
 
-        supportActionBar?.apply {
-            setBackgroundDrawable(ColorDrawable(Color.parseColor("#ff161b22")))
-            elevation = 4F
-        }
-
         userViewModel.isLoading.observe(this, { isLoading ->
             showLoading(isLoading)
         })

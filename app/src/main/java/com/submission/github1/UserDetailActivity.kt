@@ -33,8 +33,6 @@ class UserDetailActivity : AppCompatActivity() {
         supportActionBar?.apply {
             title = user.login
             setDisplayHomeAsUpEnabled(true)
-            setBackgroundDrawable(ColorDrawable(Color.parseColor("#ff161b22")))
-            elevation = 4F
         }
 
         userViewModel.getDetailUser(user.login!!)

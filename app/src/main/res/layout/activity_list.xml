@@ -25,10 +25,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/empty_state"
-        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/empty_image"
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/nothing_to_see_here"
-            android:textColor="#c9d1d9"
+            android:textColor="@color/black_primary"
             app:layout_constraintEnd_toEndOf="@+id/empty_image"
             app:layout_constraintStart_toStartOf="@+id/empty_image"
             app:layout_constraintTop_toBottomOf="@+id/empty_image" />
