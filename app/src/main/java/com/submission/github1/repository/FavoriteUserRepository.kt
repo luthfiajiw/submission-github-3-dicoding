@@ -1,7 +1,10 @@
-package com.submission.github1.database
+package com.submission.github1.repository
 
 import android.app.Application
 import androidx.lifecycle.LiveData
+import com.submission.github1.database.FavoriteUser
+import com.submission.github1.database.FavoriteUserDao
+import com.submission.github1.database.FavoriteUserDatabase
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 

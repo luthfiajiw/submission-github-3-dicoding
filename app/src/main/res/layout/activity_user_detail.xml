@@ -63,7 +63,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:textAlignment="center"
-                            android:textColor="#8b949e"
+                            android:textColor="@color/black_primary"
                             tools:text="0" />
 
                         <TextView
@@ -73,7 +73,7 @@
                             android:layout_marginTop="2dp"
                             android:text="@string/repository"
                             android:textAlignment="center"
-                            android:textColor="#8b949e" />
+                            android:textColor="@color/black_primary" />
                     </RelativeLayout>
 
                     <View
@@ -93,7 +93,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:textAlignment="center"
-                            android:textColor="#8b949e"
+                            android:textColor="@color/black_primary"
                             tools:text="0" />
 
                         <TextView
@@ -103,7 +103,7 @@
                             android:layout_marginTop="2dp"
                             android:text="@string/following"
                             android:textAlignment="center"
-                            android:textColor="#8b949e" />
+                            android:textColor="@color/black_primary" />
                     </RelativeLayout>
 
                     <View
@@ -123,7 +123,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:textAlignment="center"
-                            android:textColor="#8b949e"
+                            android:textColor="@color/black_primary"
                             tools:text="0" />
 
                         <TextView
@@ -133,7 +133,7 @@
                             android:layout_marginTop="2dp"
                             android:text="@string/followers"
                             android:textAlignment="center"
-                            android:textColor="#8b949e" />
+                            android:textColor="@color/black_primary" />
                     </RelativeLayout>
                 </LinearLayout>
             </RelativeLayout>
@@ -153,13 +153,13 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:text="Nama"
-                    android:textColor="#c9d1d9"/>
+                    android:textColor="@color/black_primary"/>
 
                 <TextView
                     android:id="@+id/company"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#8b949e"
+                    android:textColor="@color/black_primary"
                     android:textSize="12sp"
                     app:drawableStartCompat="@drawable/ic_outline_apartment_24_grey"
                     android:drawablePadding="12dp"
@@ -172,7 +172,7 @@
                     android:id="@+id/location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#8b949e"
+                    android:textColor="@color/black_primary"
                     android:textSize="12sp"
                     app:drawableStartCompat="@drawable/ic_outline_location_on_24_grey"
                     android:drawablePadding="12dp"
@@ -196,8 +196,7 @@
                     android:id="@+id/tabs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/colorPrimary"
-                    app:tabTextColor="@color/white" />
+                    app:tabTextColor="@color/black_primary" />
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/view_pager"

@@ -7,6 +7,11 @@
         app:showAsAction="collapseActionView|always"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         android:title="@string/search">
-
+    </item>
+    <item
+        android:id="@+id/favotite"
+        android:icon="@drawable/ic_baseline_favorite_border_24"
+        app:showAsAction="collapseActionView|always"
+        android:title="@string/favorite">
     </item>
 </menu>

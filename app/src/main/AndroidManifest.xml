@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.submission.github1">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -9,14 +10,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.SubmissionGithub1">
+        android:theme="@style/Theme.SubmissionGithub1"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".FavoriteUserActivity"
+            android:exported="false" />
         <activity
             android:name=".UserDetailActivity"
             android:exported="true" />
         <activity
             android:name=".ListUserActivity"
-            android:exported="true" />x
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

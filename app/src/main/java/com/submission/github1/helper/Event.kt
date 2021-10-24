@@ -1,4 +1,4 @@
-package com.submission.github1
+package com.submission.github1.helper
 
 open class Event<out T>(private val content: T) {
     @Suppress("MemberVisibilityCanBePrivate")

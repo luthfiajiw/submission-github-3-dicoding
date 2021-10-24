@@ -11,11 +11,14 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.submission.github1.database.FavoriteUser
+import com.submission.github1.helper.Event
+import com.submission.github1.repository.FavoriteUserRepository
 import cz.msebera.android.httpclient.Header
 
 class UserViewModel(application: Application) : ViewModel() {
-
-    private val token = "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"
+    private val mFavoriteUserRepository = FavoriteUserRepository(application)
+    private val token = "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"
     private val baseUrl = "https://api.github.com"
 
     private val usersModel = MutableLiveData<UsersModel>()
@@ -208,5 +211,13 @@ class UserViewModel(application: Application) : ViewModel() {
             }
 
         })
+    }
+
+    fun insertFavoriteUser(favoriteUser: FavoriteUser) {
+        mFavoriteUserRepository.insert(favoriteUser)
+    }
+
+    fun deleteFavoriteUser(favoriteUser: FavoriteUser) {
+        mFavoriteUserRepository.delete(favoriteUser)
     }
 }
