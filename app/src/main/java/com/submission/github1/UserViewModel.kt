@@ -18,7 +18,6 @@ import cz.msebera.android.httpclient.Header
 
 class UserViewModel(application: Application) : ViewModel() {
     private val mFavoriteUserRepository = FavoriteUserRepository(application)
-    private val token = "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"
     private val baseUrl = "https://api.github.com"
 
     private val usersModel = MutableLiveData<UsersModel>()
@@ -54,7 +53,7 @@ class UserViewModel(application: Application) : ViewModel() {
         val url = "$baseUrl/users/$username"
 
         _isLoading.postValue(true)
-        client.addHeader("Authorization", "token $token")
+        client.addHeader("Authorization", "token ${BuildConfig.GITHUB_TOKEN}")
         client.addHeader("User-Agent", "request")
         client.get(url, object : AsyncHttpResponseHandler() {
             override fun onSuccess(
@@ -94,7 +93,7 @@ class UserViewModel(application: Application) : ViewModel() {
         var url = "$baseUrl/search/users?q=$username"
 
         _isLoading.postValue(true)
-        client.addHeader("Authorization", "token $token")
+        client.addHeader("Authorization", "token ${BuildConfig.GITHUB_TOKEN}")
         client.addHeader("User-Agent", "request")
         client.get(url, object : AsyncHttpResponseHandler() {
             override fun onSuccess(
@@ -136,7 +135,7 @@ class UserViewModel(application: Application) : ViewModel() {
         val url = "$baseUrl/users/$username/following"
 
         _isLoadingFollowing.postValue(true)
-        client.addHeader("Authorization", "token $token")
+        client.addHeader("Authorization", "token ${BuildConfig.GITHUB_TOKEN}")
         client.addHeader("User-Agent", "request")
         client.get(url, object: AsyncHttpResponseHandler() {
             override fun onSuccess(
@@ -177,7 +176,7 @@ class UserViewModel(application: Application) : ViewModel() {
         val url = "$baseUrl/users/$username/followers"
 
         _isLoadingFollowers.postValue(true)
-        client.addHeader("Authorization", "token $token")
+        client.addHeader("Authorization", "token ${BuildConfig.GITHUB_TOKEN}")
         client.addHeader("User-Agent", "request")
         client.get(url, object: AsyncHttpResponseHandler() {
             override fun onSuccess(

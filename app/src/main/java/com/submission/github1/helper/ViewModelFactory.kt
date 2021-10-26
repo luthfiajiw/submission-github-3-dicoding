@@ -3,6 +3,7 @@ package com.submission.github1.helper
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.submission.github1.FavoriteUserViewModel
 import com.submission.github1.UserViewModel
 
 class ViewModelFactory private constructor(private val mApplication: Application) : ViewModelProvider.NewInstanceFactory() {
@@ -25,6 +26,8 @@ class ViewModelFactory private constructor(private val mApplication: Application
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(UserViewModel::class.java)) {
             return UserViewModel(mApplication) as T
+        } else if (modelClass.isAssignableFrom(FavoriteUserViewModel::class.java)) {
+            return FavoriteUserViewModel(mApplication) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }
