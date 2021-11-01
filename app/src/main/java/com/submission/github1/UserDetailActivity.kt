@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
@@ -18,6 +19,7 @@ import com.submission.github1.helper.ViewModelFactory
 
 class UserDetailActivity : AppCompatActivity() {
 
+    private var isFavorite: Boolean = false
     private var binding : ActivityUserDetailBinding? = null
     private lateinit var userViewModel: UserViewModel
     private lateinit var user : UserModel
@@ -35,6 +37,12 @@ class UserDetailActivity : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
         }
 
+        userViewModel.getFavUser(user.login!!).observe(this, { favUser ->
+            if (favUser != null) {
+                isFavorite = true   
+                binding?.fabFavorite?.setImageResource(R.drawable.ic_baseline_favorite_24_red)
+            }
+        })
         userViewModel.getDetailUser(user.login!!)
         userViewModel.isLoading.observe(this, { isLoading ->
             showLoading(isLoading)

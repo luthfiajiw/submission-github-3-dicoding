@@ -48,6 +48,8 @@ class UserViewModel(application: Application) : ViewModel() {
         .addLast(KotlinJsonAdapterFactory())
         .build()
 
+    fun getFavUser(username: String): LiveData<FavoriteUser> = mFavoriteUserRepository.getFavUser(username)
+
     fun getDetailUser(username: String) {
         val client = AsyncHttpClient()
         val url = "$baseUrl/users/$username"
