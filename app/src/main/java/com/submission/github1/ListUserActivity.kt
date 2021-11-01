@@ -3,14 +3,11 @@ package com.submission.github1
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -79,6 +76,10 @@ class ListUserActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.favotite -> {
                 val intent = Intent(this@ListUserActivity, FavoriteUserActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.settings -> {
+                val intent = Intent(this@ListUserActivity, SettingsActivity::class.java)
                 startActivity(intent)
             }
         }
