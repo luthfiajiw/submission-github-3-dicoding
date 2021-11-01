@@ -13,6 +13,9 @@
         android:theme="@style/Theme.SubmissionGithub1"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".FavoriteUserActivity"
             android:exported="false" />
         <activity
